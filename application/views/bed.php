@@ -3,11 +3,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Bed
+      Kasur
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">bed</li>
+      <li class="active">kasur</li>
     </ol>
   </section>
 
@@ -25,7 +25,7 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Bed Name</th>
+                  <th>Kasur</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -43,7 +43,7 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Bed Name</th>
+                <th>Kasur</th>
                 <th>Action</th>
               </tr>
               </tfoot>
@@ -76,8 +76,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
       </div>
       </form>
       </div><!-- /.modal-content -->
@@ -100,6 +100,7 @@
 		      $("#modalbody").html(data);
 
 	    });
+      $('form').submit(false);
     }
 
     function editdata(id)
@@ -111,38 +112,43 @@
 		      $("#modalbody").html(data);
 
 	    });
+      $('form').submit(false);
     }
 
     function save1()
     {
-      var url;
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('bedadd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('bedupdate')?>";
-      }
+      if ($('#bed').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('bedadd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('bedupdate')?>";
+        }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
 
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload()// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-				elert(errorThrown);
-            }
-        });
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                location.reload()// for reload a page
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Error');
+  				elert(errorThrown);
+              }
+          });
+      }
     }
 
     function deletedata(id)

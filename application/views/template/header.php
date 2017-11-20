@@ -4,7 +4,6 @@ if($this->session->userdata('status') != "login"){
 		}else {
 		}
 ?>
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -14,6 +13,7 @@ if($this->session->userdata('status') != "login"){
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="Karunia Travel">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css');?>">
+	  <!--<link rel="stylesheet" href="<?php echo base_url('assets/dist/css/jquery.ui.min.css');?>">-->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/font-awesome/css/font-awesome.min.css');?>">
   <!-- Ionicons -->
@@ -59,10 +59,13 @@ if($this->session->userdata('status') != "login"){
 		  return true;
 		}
 	</script>
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/front/css/jquery-ui.css">
+  <script src="<?php echo base_url();?>assets/front/js/jquery-1.12.4.js"></script>
+  <script src="<?php echo base_url();?>assets/front/js/jquery-ui.js"></script>
 	<!-- jQuery 3 -->
-	<script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js');?>"></script>
+	<!--<script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js');?>"></script> -->
 	<!-- jQuery UI 1.11.4 -->
-	<script src="<?php echo base_url('assets/bower_components/jquery-ui/jquery-ui.min.js');?>"></script>
+	<!--<script src="<?php echo base_url('assets/bower_components/jquery-ui/jquery-ui.min.js');?>"></script> -->
 	<script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyC7_M6TBAAaDdAgHvmlYJqMhZIeSLRyeSo&libraries=places'></script>
   <script src="<?php echo base_url('assets/dist/locationpicker.jquery.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/dist/js/jquery.mask.min.js');?>"></script>

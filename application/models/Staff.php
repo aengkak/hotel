@@ -57,6 +57,7 @@ class Staff extends CI_model {
 		$email = $this->input->post('email');
 		$no_telp = $this->input->post('no_telp');
 		$alamat = $this->input->post('alamat');
+		$user_id = $this->session->userdata('user_id');
 		$res = implode(",",$akses_id);
 		if ($password == NULL) {
 			$data = array('username' => $username,
@@ -71,11 +72,18 @@ class Staff extends CI_model {
 			$this->db->where('id_user', $id);
 			$this->db->update('user', $data);
 		}
+		if ($user_id == $id) {
+			$this->session->set_userdata('akses_id', $res);
+		}
 
 		date_default_timezone_set('Asia/Jakarta');
 		$date = date('Y-m-d H:i:s');
-		$supplier_id = $this->session->userdata('supplier_id');
-		$user_id = $this->session->userdata('user_id');
+		if ($supp != NULL) {
+			$supplier_id = $supp;
+		} else {
+			$supplier_id = 0;
+		}
+
 		$datalog = array('user_id' => $user_id, 'ket' => "Update User"." ".$username, 'supplier_id' => $supplier_id, 'waktu' => $date);
 		$this->db->insert('log', $datalog);
 		$this->db->insert_id();

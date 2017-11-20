@@ -16,14 +16,32 @@ class Room extends CI_model {
 		$this->db->from('produk');
 		$this->db->join('bed', 'produk.bed_id = bed.id_bed');
 		$this->db->where('produk.status', $status);
+		$this->db->order_by("harga_produk", "desc");
     return $this->db->get()->result();
 	}
-	public function select() {
-		$supplier_id = $this->session->userdata('supplier_id');
+	public function filter() {
 		$status = "1";
-		$this->db->where('supplier_id', $supplier_id);
-		$this->db->where('status', $status);
-    return $this->db->get('produk')->result();
+		$harga = $this->session->userdata('harga');
+		$priceRangeArr = explode(',', $harga);
+		$this->db->select('*');
+		$this->db->from('produk');
+		$this->db->join('bed', 'produk.bed_id = bed.id_bed');
+		$this->db->where('produk.status', $status);
+		if ($harga != NULL) {
+			$this->db->where('harga_produk >=', $priceRangeArr[0]);
+			$this->db->where('harga_produk <=', $priceRangeArr[1]);
+		}
+		$this->db->order_by('harga_produk', "DESC");
+    return $this->db->get()->result();
+	}
+	public function select($id) {
+		$status = "1";
+		$this->db->select('*');
+		$this->db->from('produk');
+		$this->db->join('bed', 'produk.bed_id = bed.id_bed');
+		$this->db->where('produk.id_produk', $id);
+		$this->db->where('produk.status', $status);
+    return $this->db->get()->row();
 	}
 	public function sel1($id) {
 		$supplier_id = $this->session->userdata('supplier_id');
@@ -51,13 +69,13 @@ class Room extends CI_model {
 		if ($fitur_id == NULL) {
 			$data = array('nama_produk' => $nama_produk, 'harga_produk' => $harga_produk,
 							'fitur_id' => "0", 'luas' => $luas, 'stok' => $stok, 'warna' => $warna, 'bed_id' =>$bed,
-							'supplier_id' => $supplier_id, 'status' => $status, 'created' => $date99);
+							 'supplier_id' => $supplier_id, 'status' => $status, 'created' => $date99);
 			$this->db->insert('produk', $data);
 			$this->db->insert_id();
 		} else {
 			$data = array('nama_produk' => $nama_produk, 'harga_produk' => $harga_produk,
 							'fitur_id' => $res, 'luas' => $luas, 'stok' => $stok, 'warna' => $warna, 'bed_id' =>$bed,
-							'supplier_id' => $supplier_id, 'status' => $status, 'created' => $date99);
+							 'supplier_id' => $supplier_id, 'status' => $status, 'created' => $date99);
 			$this->db->insert('produk', $data);
 			$this->db->insert_id();
 		}
@@ -124,5 +142,14 @@ class Room extends CI_model {
 		$id = $this->input->post('produk_id');
 		$this->db->where('id_produk', $id);
 		return $this->db->get('produk')->row();
+	}
+	public function changehotel() {
+		$hotel = $this->input->post('hotel');
+		$this->db->where('nama_supplier', $hotel);
+		$a = $this->db->get('supplier')->row();
+		if ($a != NULL) {
+			$this->db->where('supplier_id', $a->id_supplier);
+			return $this->db->get('produk')->result();
+		}
 	}
 }

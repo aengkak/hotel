@@ -1,13 +1,19 @@
+<style>
+    .pac-container {
+        z-index: 10000 !important;
+    }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Nearby
+      Tempat Terdekat
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">nearby</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li class="active">tempat terdekat</li>
     </ol>
   </section>
 
@@ -25,7 +31,7 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Location Name</th>
+                  <th>Nama</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -43,7 +49,7 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Location Name</th>
+                <th>Nama</th>
                 <th>Action</th>
               </tr>
               </tfoot>
@@ -94,19 +100,56 @@
     {
       save_method1 = 'add';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("modalnear/",function(data){
 		      $("#modalbody").html(data);
+          $('#us3').locationpicker({
+              location: {
+                  latitude: -7.25468,
+                  longitude: 112.72093799999993
+              },
+              radius: 300,
+              inputBinding: {
+                  latitudeInput: $('#us3-lat'),
+                  longitudeInput: $('#us3-lon'),
+                  radiusInput: $('#us3-radius'),
+                  locationNameInput: $('#us3-address')
+              },
+              enableAutocomplete: true,
+              onchanged: function (currentLocation, radius, isMarkerDropped) {
+                  // Uncomment line below to show alert on each Location Changed event
+                  //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+              }
+          });
 	    });
+
     }
 
     function editdata(id)
     {
       save_method1 = 'update';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("nearedit/"+id,function(data){
 		      $("#modalbody").html(data);
+          $('#us3').locationpicker({
+              location: {
+                latitude: $('#us3-lat').val(),
+                longitude: $('#us3-lon').val()
+              },
+              radius: 300,
+              inputBinding: {
+                  latitudeInput: $('#us3-lat'),
+                  longitudeInput: $('#us3-lon'),
+                  radiusInput: $('#us3-radius'),
+                  locationNameInput: $('#us3-address')
+              },
+              enableAutocomplete: true,
+              onchanged: function (currentLocation, radius, isMarkerDropped) {
+                  // Uncomment line below to show alert on each Location Changed event
+                  //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+              }
+          });
 	    });
 
     }

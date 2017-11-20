@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','email','Ajax_pagination');
+$autoload['libraries'] = array('database','session','email','Ajax_pagination','pagination','Pagingproses','Pagingbatal', 'Dompdf_gen','Pagingulasan');
 
 /*
 | -------------------------------------------------------------------

@@ -2,6 +2,7 @@
 {
    var pluginName = "bootstrapMaterialDatePicker";
    var pluginDataName = "plugin_" + pluginName;
+   var base_url = window.location.origin+window.location.pathname;
 
    moment.locale('en');
 
@@ -208,9 +209,9 @@
                   this.midYear=y;
                   var yearHtml =
                       '<div class="dtp-picker-year hidden" >' +
-                      '<div><a href="javascript:void(0);" class="btn btn-default dtp-select-year-range before" style="margin: 0;"><img src="assets/front/images/icons/up.png"></a></div>' +
+                      '<div><a href="javascript:void(0);" class="btn btn-default dtp-select-year-range before" style="margin: 0;"><img src="'+ base_url +'/assets/front/images/icons/up.png"></a></div>' +
                       yearPicker +
-                      '<div><a href="javascript:void(0);" class="btn btn-default dtp-select-year-range after" style="margin: 0;"><img src="assets/front/images/icons/down.png"></a></div>' +
+                      '<div><a href="javascript:void(0);" class="btn btn-default dtp-select-year-range after" style="margin: 0;"><img src="'+ base_url +'/assets/front/images/icons/down.png"></a></div>' +
                       '</div>';
 
                  this.template = '<div class="dtp hidden" id="' + this.name + '">' +
@@ -218,27 +219,27 @@
                          '<div class="dtp-date-view">' +
                          '<header class="dtp-header">' +
                          '<div class="dtp-actual-day">Lundi</div>' +
-                         '<div class="dtp-close"><a href="javascript:void(0);"><img src="assets/front/images/icons/close.png"></a></div>' +
+                         '<div class="dtp-close"><a href="javascript:void(0);"><img src="'+ base_url +'/assets/front/images/icons/close.png"></a></div>' +
                          '</header>' +
                          '<div class="dtp-date hidden">' +
                          '<div>' +
                          '<div class="left center p10">' +
-                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-month-before"><img src="assets/front/images/icons/l.png"></a></div>' +
+                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-month-before"><img src="'+ base_url +'/assets/front/images/icons/l.png"></a></div>' +
                          '</div>' +
                          '<div class="dtp-actual-month p80">MAR</div>' +
                          '<div class="right center p10">' +
-                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-month-after"><img src="assets/front/images/icons/r.png"></a></div>' +
+                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-month-after"><img src="'+ base_url +'/assets/front/images/icons/r.png"></a></div>' +
                          '</div>' +
                          '<div class="clearfix"></div>' +
                          '</div>' +
                          '<div class="dtp-actual-num">13</div>' +
                          '<div>' +
                          '<div class="left center p10">' +
-                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-year-before"><img src="assets/front/images/icons/l.png"></a></div>' +
+                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-year-before"><img src="'+ base_url +'/assets/front/images/icons/l.png"></a></div>' +
                          '</div>' +
                          '<div class="dtp-actual-year p80'+(this.params.year?"":" disabled")+'">2014</div>' +
                          '<div class="right center p10">' +
-                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-year-after"><img src="assets/front/images/icons/r.png"></a></div>' +
+                         '<div class="dtp-select-month-before"><a href="javascript:void(0);" class="dtp-select-year-after"><img src="'+ base_url +'/assets/front/images/icons/r.png"></a></div>' +
                          '</div>' +
                          '<div class="clearfix"></div>' +
                          '</div>' +

@@ -185,12 +185,14 @@ $(function(){
         $("#modalbody").load("<?php echo base_url('editc');?>/"+currentEvent._id,function(data){
   		      $("#modalbody").html(data);
             $('#color').colorpicker(); // Colopicker
+            $('#harga').mask("#,###.###", {reverse: true});
 
   	    });
     }
 
     // Handle click on Update Button
     $('.modal').on('click', '#update-event',  function(e){
+            $("#harga").unmask();
             $.post("<?php echo base_url('updatec');?>", {
                 id: currentEvent._id,
                 cek: $('#cek').val(),

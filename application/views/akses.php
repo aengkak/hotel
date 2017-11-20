@@ -3,11 +3,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Access
+      Akses
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">access</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li class="active">akses</li>
     </ol>
   </section>
 
@@ -25,8 +25,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Access</th>
-                  <th>For</th>
+                  <th>Akses</th>
+                  <th>Untuk</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -51,8 +51,8 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Access</th>
-                <th>For</th>
+                <th>Akses</th>
+                <th>Untuk</th>
                 <th>Action</th>
               </tr>
               </tfoot>
@@ -110,8 +110,10 @@
           $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass   : 'iradio_minimal-blue'
-          })
+          });
+
 	    });
+      $('form').submit(false);
     }
 
     function editacc(id)
@@ -125,41 +127,51 @@
           $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass   : 'iradio_minimal-blue'
-          })
+          });
+          $('input[type=text]').keypress(function(event) {
+            if (event.keyCode == 13) {
+    	         $('textarea').val("hello");
+               event.preventDefault();
+             }
+           });
 	    });
-
+      $('form').submit(false);
     }
 
     function save1()
     {
-      var url;
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('accadd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('accupdate')?>";
-      }
+      if ($('#akses').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('accadd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('accupdate')?>";
+        }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
 
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload()// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-				elert(errorThrown);
-            }
-        });
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                location.reload()// for reload a page
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Error');
+  				elert(errorThrown);
+              }
+          });
+      }
     }
 
     function deleteacc(id)

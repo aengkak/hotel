@@ -1,3 +1,16 @@
+<div id="modalHotel1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalHotel1">
+   <div class="modal-dialog">
+      <div class="modal-content rond">
+         <div class="modal-body ">
+            <div class="row" id="bodyharga">
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
 <div id="SignUpModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="SignUpModal">
          <div class="modal-dialog">
             <div class="modal-content rond2">
@@ -29,7 +42,7 @@
                   </form>
                   <div id="loading" align="center">
                   <button type="button" id="btnSave" onclick="save()" class=" btn btn-lg font16 borderblue rond blue full-width ">DAFTAR</button>
-                  <div class="font16 marginsmalltop ">Dengan meng-klik tombol masuk Anda menyetujui <a href="faqsyaratketentuan.html" class="blue">Syarat &amp; Ketentuan </a> dan <a href="faqkebijakanprivasi.html" class="blue">Kebijakan Privasi</a> Pesan Hotel.</div>
+                  <div class="font16 marginsmalltop ">Dengan meng-klik tombol masuk Anda menyetujui <a href="<?php echo base_url();?>faq" class="blue">Syarat &amp; Ketentuan </a> dan <a href="<?php echo base_url();?>faq" class="blue">Kebijakan Privasi</a> Pesan Hotel.</div>
                 </div>
                </div>
                <hr>
@@ -67,7 +80,7 @@
                   </div>
                   <div class="full-width text-right marginsmallbottom"><a class="blue font16" href="">Lupa password?</a></div>
                   <button type="button" id="btnSave" onclick="login()" class=" btn btn-lg font16 bluebg rond white full-width ">Login</button>
-                  <div class="font16 marginsmalltop ">Dengan meng-klik tombol masuk Anda menyetujui <a href="faqsyaratketentuan.html" class="blue">Syarat &amp; Ketentuan </a> dan <a href="faqkebijakanprivasi.html" class="blue">Kebijakan Privasi</a> Pesan Hotel.</div>
+                  <div class="font16 marginsmalltop ">Dengan meng-klik tombol masuk Anda menyetujui <a href="<?php echo base_url();?>faq" class="blue">Syarat &amp; Ketentuan </a> dan <a href="<?php echo base_url();?>faq" class="blue">Kebijakan Privasi</a> Pesan Hotel.</div>
                 </form>
                </div>
                <hr>
@@ -104,7 +117,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo base_url();?>assets/front/js/bootstrap.js"></script>
 <script src="<?php echo base_url('assets/bower_components/moment/min/moment.min.js');?>"></script>
-<script src="<?php echo base_url();?>assets/front/js/bootstrap-material-datetimepicker.js" charset="UTF-8"></script>
+<!--<script src="<?php echo base_url('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>-->
 
 
 <!-- JavaScript
@@ -148,66 +161,48 @@
    })
 </script>
 <script>
-$(document).ready(function()
-    {
-var currentTime = new Date();
-  $("#date-end, #date-endmo").bootstrapMaterialDatePicker({ dateFormat: 'yy-mm-dd', time: false}).bootstrapMaterialDatePicker("setDate", new Date());
-  $('#date-start, #date-startmo').bootstrapMaterialDatePicker({ dateFormat: 'yy-mm-dd', time: false, minDate : currentTime }).bootstrapMaterialDatePicker("setDate", new Date()).on('change', function(e, date)
-			{
-				$('#date-end, #date-endmo').bootstrapMaterialDatePicker('setMinDate', date);
-			});;
+$(document).ready(function () {
+	var currentTime = new Date();
+	var besok = new Date();
+	var lusa = new Date();
+	besok.setDate(besok.getDate() + 1);
+	lusa.setDate(lusa.getDate() + 2);
+
+	$("#date-end, #date-endmo").datepicker({
+		onClose: function (dateText, inst) {
+			var self = $(this),
+				tabIndex = parseInt(self.attr('tabindex'), 20),
+				nextIndex = tabIndex + 1,
+				nextInput = $('[tabindex="' + nextIndex + '"]');
+			nextInput.get(0).focus();
+		},
+		dateFormat: 'yy-mm-dd',
+		minDate: currentTime
+	}) <?php if($this->session->userdata('sampai') == NULL){?>
+	.datepicker("setDate", lusa);
+	<?php } else { echo ";"; } ?>
+	$("#date-start, #date-startmo").datepicker({
+		onClose: function (dateText, inst) {
+			var self = $(this),
+				tabIndex = parseInt(self.attr('tabindex'), 20),
+				nextIndex = tabIndex + 1,
+				nextInput = $('[tabindex="' + nextIndex + '"]');
+			nextInput.get(0).focus();
+		},
+		dateFormat: 'yy-mm-dd',
+		minDate: currentTime
+	})<?php if($this->session->userdata('dari') == NULL){?>
+	.datepicker("setDate", besok)
+	<?php } ?>.bind("change", function () {
+		var minValue = $(this).val();
+		minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
+		minValue.setDate(minValue.getDate() + 1);
+		$("#date-end, #date-endmo").datepicker("option", "minDate", minValue);
+	})
 
 });
 </script>
-<script>
-$(document).ready(function()
-    {
-      $("#tgl").bootstrapMaterialDatePicker({ dateFormat: 'yy-mm-dd', time: false});
-    });
-</script>
-<script type="text/javascript">
-  function change1() {
-    document.getElementById("date-startmo").value = $('#date-start').val();
-    document.getElementById("date-endmo").value = $('#date-end').val();
-  }
-</script>
-<script type="text/javascript">
-  function change2() {
-    document.getElementById("date-start").value = $('#date-startmo').val();
-    document.getElementById("date-end").value = $('#date-endmo').val();
-  }
-</script>
-<script type="text/javascript">
-  function input() {
-    document.getElementById("autocomplete").value = $('#autocomplete1').val();
-  }
-</script>
-<script>
-  function kamar() {
-    var a = $( "#kamar" ).val();
-    $( "#kamar1" ).val(a);
-  }
-  function kamar1() {
-    var b = $( "#kamar1" ).val();
-    $( "#kamar" ).val(b);
-  }
-</script>
-<script>
-  function orang() {
-    var a = $( "#orang" ).val();
-    $( "#orang1" ).val(a);
-  }
-  function orang1() {
-    var b = $( "#orang1" ).val();
-    $( "#orang" ).val(b);
-  }
-</script>
-<script>
-  function tempattujuan() {
-    var a = $( "#tempattujuan" ).val();
-    $( "#tempattujuan1" ).val(a);
-  }
-</script>
+
 <script>
    $("#alert").removeClass("in").hide();
 </script>
@@ -224,7 +219,7 @@ $(document).ready(function()
       if (data > 0) {
         $("#alert").removeClass("in").show();
         $("#alert").delay(200).addClass("in").fadeOut(4000);
-        document.getElementById("muncul").innerHTML = "Email";
+        document.getElementById("muncul").innerHTML = "Email already exists";
         return false;
       }
       },
@@ -239,24 +234,41 @@ $(document).ready(function()
         document.getElementById("muncul").innerHTML = "Form Must Be Filled";
         return false;
       } else {
-       // ajax adding data to database
-          $.ajax({
-            url : "<?php echo base_url('peradd')?>",
-            type: "POST",
-            data: $('#form').serialize(),
-            beforeSend: function(){
-   				       $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
-   			    },
-            success: function(data)
-            {
-                $('#SignUpModal').modal('hide');
-                $('#veriv').modal('show');
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Register Error');
-            }
+
+        jQuery.ajax({
+        url: "<?php echo base_url()?>cekreg",
+        data:$('#form').serialize(),
+        type: "POST",
+        success:function(data){
+        if (data > 0) {
+          $("#alert").removeClass("in").show();
+          $("#alert").delay(200).addClass("in").fadeOut(4000);
+          document.getElementById("muncul").innerHTML = "Email already exists";
+          return false;
+        } else {
+          // ajax adding data to database
+             $.ajax({
+               url : "<?php echo base_url('peradd')?>",
+               type: "POST",
+               data: $('#form').serialize(),
+               beforeSend: function(){
+                     $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
+                },
+               success: function(data)
+               {
+                   $('#SignUpModal').modal('hide');
+                   $('#veriv').modal('show');
+               },
+               error: function (jqXHR, textStatus, errorThrown)
+               {
+                   alert('Register Error');
+               }
+           });
+        }
+        },
+        error:function (){}
         });
+
       }
     }
 </script>
@@ -299,14 +311,15 @@ function showModal(id) {
   $("#" + id).modal('show');
 }
 </script>
-<script>var slider = new Slider('#ex2', {});</script>
+<!--<script>
+var slider = new Slider('#ex2', {});</script>
       <script>var slider = new Slider('#ex2sb', {});</script>
       <script>var slider = new Slider('#ex2mo', {});</script>
       <script>var slider = new Slider("#ex6");
          slider.on("slide", function(sliderValue) {
          	document.getElementById("ex6SliderVal").textContent = sliderValue;
          });
-      </script>
+      </script>-->
       <script>
          $(function () {
            $('.js-affixed-element-top').affix({
@@ -334,24 +347,12 @@ function showModal(id) {
            })
          })
       </script>
-<script>
-function searchFilter(page_num) {
-	page_num = page_num?page_num:0;
-	var keywords = $('#keywords').val();
-	var sortBy = $('#sortBy').val();
-	$.ajax({
-		type: 'POST',
-		url: '<?php echo base_url(); ?>search-paging/'+page_num,
-		data:'page='+page_num+'&keywords='+keywords+'&sortBy='+sortBy,
-		beforeSend: function () {
-			$('.loading').show();
-		},
-		success: function (html) {
-			$('#postList').html(html);
-			$('.loading').fadeOut("slow");
-		}
-	});
-}
-</script>
+	  <script>
+	  $('select[id="kamar"]').change(function(e){
+		  e.stopPropagation();
+	$("#orang").dropdown("toggle");
+              return false;
+});
+	  </script>
 </body>
 </html>

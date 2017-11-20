@@ -136,25 +136,32 @@
 	    });
     $("#form").on('submit',(function(e) {
       e.preventDefault();
-      $.ajax({
-        url: "galadd",
-        type: "POST",
-        data:  new FormData(this),
-        contentType: false,
-        cache: false,
-        processData:false,
-        beforeSend: function(){
-             $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
-        },
-        success: function(data)
-          {
-            location.reload();
+      if ($('#foto').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#ket').val() == '') {
+        alert('lengkapi data');
+      } else {
+        $.ajax({
+          url: "galadd",
+          type: "POST",
+          data:  new FormData(this),
+          contentType: false,
+          cache: false,
+          processData:false,
+          beforeSend: function(){
+               $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
           },
-          error: function (jqXHR, textStatus, errorThrown)
-          {
-              alert('Error load image');
-          }
-       });
+          success: function(data)
+            {
+              location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error load image');
+            }
+         });
+      }
+
     }));
     }
 
@@ -168,31 +175,38 @@
 	    });
     $("#form").on('submit',(function(e) {
       e.preventDefault();
-      $.ajax({
-            url: "galupdate",
-        type: "POST",
-        data:  new FormData(this),
-        contentType: false,
-        cache: false,
-        processData:false,
-        beforeSend: function(){
-             $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
-        },
-        success: function(data)
-          {
-            $('#modal_form').modal('hide');
-            location.reload();
+      if ($('#foto').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#ket').val() == '') {
+        alert('lengkapi data');
+      } else {
+        $.ajax({
+              url: "galupdate",
+          type: "POST",
+          data:  new FormData(this),
+          contentType: false,
+          cache: false,
+          processData:false,
+          beforeSend: function(){
+               $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
           },
-          error: function()
-          {
-          }
-       });
+          success: function(data)
+            {
+              $('#modal_form').modal('hide');
+              location.reload();
+            },
+            error: function()
+            {
+            }
+         });
+      }
+
     }));
     }
 
     function deletegal(id)
     {
-      if(confirm('Are you sure delete this data?'))
+      if(confirm('Hapus data?'))
       {
         // ajax delete data from database
           $.ajax({

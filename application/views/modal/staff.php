@@ -3,13 +3,13 @@
 <div class="form-group">
   <label class="control-label col-md-3">Username</label>
   <div class="col-md-9">
-    <input name="username" placeholder="username" class="form-control" type="text">
+    <input name="username" id="username" placeholder="username" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
   <label class="control-label col-md-3">Password</label>
   <div class="col-md-9">
-    <input name="password" placeholder="password" class="form-control" type="password">
+    <input name="password" id="password" placeholder="password" class="form-control" type="password">
   </div>
 </div>
 <div class="form-group">
@@ -25,27 +25,27 @@
 </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">Full Name</label>
+  <label class="control-label col-md-3">Nama</label>
   <div class="col-md-9">
-    <input name="nama_lengkap" placeholder="Full Name" class="form-control" type="text">
+    <input name="nama_lengkap" id="nama" placeholder="Nama" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">Address</label>
+  <label class="control-label col-md-3">Alamat</label>
   <div class="col-md-9">
-    <input name="alamat" placeholder="Address" class="form-control" type="text">
+    <input name="alamat" id="alamat" placeholder="Alamat" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">Phone Number</label>
+  <label class="control-label col-md-3">No Telp</label>
   <div class="col-md-9">
-    <input name="no_telp" placeholder="Phone Number" class="form-control" type="text">
+    <input name="no_telp" id="no_telp" placeholder="No Telp" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
   <label class="control-label col-md-3">Email</label>
   <div class="col-md-9">
-    <input name="email" placeholder="Email" class="form-control" type="text">
+    <input name="email" id="email" placeholder="Email" class="form-control" type="text">
   </div>
 </div>
 <?php } else { ?>
@@ -53,7 +53,7 @@
 <div class="form-group">
   <label class="control-label col-md-3">Username</label>
   <div class="col-md-9">
-    <input name="username" value="<?php echo $staff->username;?>" placeholder="username" class="form-control" type="text">
+    <input name="username" id="username" value="<?php echo $staff->username;?>" placeholder="username" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
@@ -78,27 +78,27 @@
 </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">Full Name</label>
+  <label class="control-label col-md-3">Nama</label>
   <div class="col-md-9">
-    <input name="nama_lengkap" value="<?php echo $staff->nama_lengkap;?>" placeholder="Full Name" class="form-control" type="text">
+    <input name="nama_lengkap" id="nama" value="<?php echo $staff->nama_lengkap;?>" placeholder="Nama" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">Address</label>
+  <label class="control-label col-md-3">Alamat</label>
   <div class="col-md-9">
-    <input name="alamat" value="<?php echo $staff->alamat;?>" placeholder="Address" class="form-control" type="text">
+    <input name="alamat" value="<?php echo $staff->alamat;?>" placeholder="Alamat" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">Phone Number</label>
+  <label class="control-label col-md-3">No Telp</label>
   <div class="col-md-9">
-    <input name="no_telp" value="<?php echo $staff->no_telp;?>" placeholder="Phone Number" class="form-control" type="text">
+    <input name="no_telp" id="no_telp" value="<?php echo $staff->no_telp;?>" placeholder="No Telp" class="form-control" type="text">
   </div>
 </div>
 <div class="form-group">
   <label class="control-label col-md-3">Email</label>
   <div class="col-md-9">
-    <input name="email" value="<?php echo $staff->email;?>" placeholder="Email" class="form-control" type="text">
+    <input name="email" id="email" value="<?php echo $staff->email;?>" placeholder="Email" class="form-control" type="text">
   </div>
 </div>
 <?php } ?>

@@ -1,12 +1,12 @@
 <?php if($cek == 1) { ?>
 <div class="form-group">
-  <label class="control-label col-md-3">Access</label>
+  <label class="control-label col-md-3">Akses</label>
   <div class="col-md-9">
-    <input name="akses" placeholder="Access" class="form-control" type="text" required>
+    <input name="akses" placeholder="Akses" id="akses" class="form-control" type="text" required>
   </div>
 </div>
 <div class="form-group">
-  <label class="control-label col-md-3">For</label>
+  <label class="control-label col-md-3">Untuk</label>
   <div class="col-md-9">
       <label>
           <input type="checkbox" name="tipe[]" class="minimal" value="0">
@@ -21,13 +21,13 @@
 <?php } else { ?>
   <input name="id_akses" value="<?php echo $akses->id_akses;?>" placeholder="id" class="form-control" type="hidden">
   <div class="form-group">
-    <label class="control-label col-md-3">Access</label>
+    <label class="control-label col-md-3">Akses</label>
     <div class="col-md-9">
-      <input name="akses" value="<?php echo $akses->akses;?>" placeholder="Access" class="form-control" type="text" required>
+      <input name="akses" id="akses" value="<?php echo $akses->akses;?>" placeholder="Akses" class="form-control" type="text" required>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3">For</label>
+    <label class="control-label col-md-3">Untuk</label>
     <div class="col-md-9">
       <?php $res = $akses->tipe;
       $res1 = explode('.',$res);

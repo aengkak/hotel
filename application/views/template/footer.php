@@ -9,6 +9,170 @@
 <!-- ./wrapper -->
 
 
+<!-- Bootstrap modal -->
+<div class="modal fade" id="prof" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title"></h3>
+         </div>
+         <div>
+           <form action="#" id="formprof" class="form-horizontal">
+         <div class="modal-body" id="modalisi">
+
+         </div>
+         <div class="modal-footer">
+           <div id="loading1">
+             <input type="submit" value="Simpan" class="btn btn-primary" />
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+           </div>
+         </div>
+         </form>
+       </div>
+      </div>
+      <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+<!-- End Bootstrap modal -->
+
+
+
+
+<!-- Bootstrap modal -->
+<div class="modal fade" id="pass" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title"></h3>
+         </div>
+         <div>
+           <form action="#" id="formpass" class="form-horizontal">
+         <div class="modal-body">
+                 <div class="form-group">
+                   <label class="control-label col-md-3">Sandi Lama</label>
+                   <div class="col-md-9">
+                     <input name="lama" id="lama" class="form-control" type="password" required>
+                   </div>
+                 </div>
+                 <div class="form-group">
+                   <label class="control-label col-md-3">Sandi Baru</label>
+                   <div class="col-md-9">
+                     <input name="baru" id="baru" class="form-control" type="password" required>
+                   </div>
+                 </div>
+                 <div class="form-group">
+                   <label class="control-label col-md-3">Verify Sandi Baru</label>
+                   <div class="col-md-9">
+                     <input name="baru1" id="baru1" class="form-control" type="password" required>
+                   </div>
+                 </div>
+         </div>
+         <div class="modal-footer">
+           <div id="loading1">
+             <input type="submit" value="Simpan" class="btn btn-primary" />
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+           </div>
+         </div>
+         </form>
+       </div>
+      </div>
+      <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+<!-- End Bootstrap modal -->
+
+<script>
+   function pass(){
+     $('#formpass')[0].reset();
+     $('#pass').modal('show');
+     $("#formpass").on('submit',(function(e) {
+       e.preventDefault();
+       $.ajax({
+         url: "<?php echo base_url()?>cekpass",
+         data:$('#formpass').serialize(),
+         type: "POST",
+         success:function(data){
+         if (data > 0) {
+           if ($('#baru').val() == $('#baru1').val()) {
+             $.ajax({
+               url : "<?php echo base_url('updatepass')?>",
+               type: "POST",
+               data: $('#formpass').serialize(),
+               beforeSend: function(){
+                    $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
+               },
+               success: function(data)
+               {
+                   $('#pass').modal('hide');
+                   location.reload()
+               },
+               error: function (jqXHR, textStatus, errorThrown)
+               {
+               }
+             });
+           } else {
+             alert('Sandi Baru Tidak Sama');
+           }
+
+           return false;
+         } else {
+           alert('Sandi Lama Salah')
+         }
+         },
+         error:function (){}
+        });
+     }));
+   }
+</script>
+
+<script>
+function modalprof() {
+  $('#formprof')[0].reset(); // reset form on modals
+  $('#prof').modal('show'); // show bootstrap modal
+  $("#modalisi").load("modalprof/",function(data){
+      $("#modalisi").html(data);
+
+  });
+  $("#formprof").on('submit',(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo base_url()?>cekpass",
+      data:$('#formprof').serialize(),
+      type: "POST",
+      success:function(data){
+      if (data > 0) {
+          $.ajax({
+            url : "<?php echo base_url('updateprof')?>",
+            type: "POST",
+            data: $('#formprof').serialize(),
+            beforeSend: function(){
+                 $('#loading').html("<img src='<?php echo base_url();?>assets/front/images/bx_loader.gif' /> Processing!");
+            },
+            success: function(data)
+            {
+                $('#prof').modal('hide');
+                location.reload()
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+            }
+          });
+
+        return false;
+      } else {
+        alert('Sandi Salah')
+      }
+      },
+      error:function (){}
+     });
+  }));
+}
+</script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);

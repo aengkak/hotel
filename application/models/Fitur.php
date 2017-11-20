@@ -8,23 +8,39 @@ class Fitur extends CI_model {
 	public function room() {
 		$this->db->where('tipe >=',"0.1");
 		$this->db->where('status', "1");
+		$this->db->order_by('nama', "ASC");
     return $this->db->get('fitur')->result();
 	}
 	public function hotel() {
 		$this->db->where('tipe <=',"0.1");
 		$this->db->where('status', "1");
+		$this->db->order_by('nama', "ASC");
     return $this->db->get('fitur')->result();
+	}
+	public function allroom($id_sup) {
+		$this->db->where('supplier_id',$id_sup);
+		$this->db->where('status', "1");
+		$f = $this->db->get('produk')->result();
+		$fitur = array();
+		foreach ($f as $key) {
+			$fitur[] = $key->fitur_id.",";
+		}
+		$im = implode(",",$fitur);
+		$ex = explode(",",$im);
+		$clear_array = array_unique($ex);
+		return $ex;
 	}
 	public function add() {
 		$nama = $this->input->post('nama');
 		$tipe = $this->input->post('tipe');
+		$icon = $this->input->post('icon');
 		$status = "1";
 		$res = implode(".",$tipe);
-		$data = array('nama' => $nama, 'tipe' => $res, 'status' => $status);
+		$data = array('nama' => $nama, 'tipe' => $res, 'icon' => $icon, 'status' => $status);
 		$this->db->insert('fitur', $data);
 		$this->db->insert_id();
 
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supplier_id = 0;
 		$user_id = $this->session->userdata('user_id');
 		date_default_timezone_set('Asia/Jakarta');
 		$date = date('Y-m-d H:i:s');
@@ -40,7 +56,7 @@ class Fitur extends CI_model {
 		$date = date('Y-m-d H:i:s');
 		$this->db->where('id_fitur', $id);
 		$cek = $this->db->get('fitur')->row();
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supplier_id = 0;
 		$user_id = $this->session->userdata('user_id');
 		$datalog = array('user_id' => $user_id, 'ket' => "Delete Feature"." ".$cek->nama, 'supplier_id' => $supplier_id, 'waktu' => $date);
 		$this->db->insert('log', $datalog);
@@ -54,12 +70,13 @@ class Fitur extends CI_model {
 		$id = $this->input->post('id_fitur');
 		$nama = $this->input->post('nama');
 		$tipe = $this->input->post('tipe');
+		$icon = $this->input->post('icon');
 		$res = implode(".",$tipe);
-		$data = array('nama' => $nama, 'tipe' => $res);
+		$data = array('nama' => $nama, 'tipe' => $res, 'icon' => $icon);
 		$this->db->where('id_fitur', $id);
 		$this->db->update('fitur', $data);
 
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supplier_id = 0;
 		$user_id = $this->session->userdata('user_id');
 		date_default_timezone_set('Asia/Jakarta');
 		$date = date('Y-m-d H:i:s');

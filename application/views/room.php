@@ -3,11 +3,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Room
+      Kamar
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">room</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li class="active">kamar</li>
     </ol>
   </section>
 
@@ -25,10 +25,10 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Name Room</th>
-                  <th>Default Price</th>
-                  <th>Room Size</th>
-                  <th>Bed</th>
+                  <th>Nama</th>
+                  <th>Harga Default</th>
+                  <th>Ukuran kamar</th>
+                  <th>Kasur</th>
                   <th>Stock Default</th>
                   <th>Action</th>
                 </tr>
@@ -51,10 +51,10 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Name Room</th>
-                <th>Default Price</th>
-                <th>Room Size</th>
-                <th>Bed</th>
+                <th>Nama</th>
+                <th>Harga Default</th>
+                <th>Ukuran kamar</th>
+                <th>Kasur</th>
                 <th>Stock Default</th>
                 <th>Action</th>
               </tr>
@@ -106,7 +106,7 @@
     {
       save_method1 = 'add';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("modalr/",function(data){
 		      $("#modalbody").html(data);
           $('#color').colorpicker(); // Colopicker
@@ -116,14 +116,16 @@
             radioClass   : 'iradio_minimal-blue'
           })
           $('#harga_produk').mask("#,###.###", {reverse: true});
+
 	    });
+      $('form').submit(false);
     }
 
     function editroom(id)
     {
       save_method1 = 'update';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("roomedit/"+id,function(data){
 		      $("#modalbody").html(data);
           $('#color').colorpicker(); // Colopicker
@@ -133,40 +135,54 @@
             radioClass   : 'iradio_minimal-blue'
           })
           $('#harga_produk').mask("#,###.###", {reverse: true});
+
 	    });
+      $('form').submit(false);
     }
 
     function save1()
     {
-      var url;
-      $("#harga_produk").unmask();
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('roomadd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('roomupdate')?>";
+      if ($('#nama_produk').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#harga_produk').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#luas').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#stok').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#color').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        $("#harga_produk").unmask();
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('roomadd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('roomupdate')?>";
+        }
+
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
+
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                location.reload()// for reload a page
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Error adding / update data');
+              }
+          });
       }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
-
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload()// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-				elert(errorThrown);
-            }
-        });
     }
 
     function deleteroom(id)
@@ -195,4 +211,16 @@
 </script>
 <script language="JavaScript">
 $('#harga_produk').mask("#,###.###", {reverse: true});
+</script>
+<script type="text/javascript">
+function changer() {
+    var x = $("#harga_produk").val();
+    if (x != "") {
+      $("#harga_produk").unmask();
+      var y = $("#harga_produk").val();
+      var a = $("#refund").val() / 100 * y;
+      document.getElementById("hasil").innerHTML = a;
+      $('#harga_produk').mask("#,###.###", {reverse: true});
+    }
+}
 </script>

@@ -199,46 +199,64 @@ class Allotment extends CI_model {
 					$this->db->where('id_produk', $produk_id);
 					$cek = $this->db->get('produk')->row();
 
-					$data7 = array('jumlah' => $jumlah, 'dari' => $dari, 'sampai' => $dari,
-												'produk_id' => $produk_id, 'harga' => $harga, 'supplier_id' => $supplier_id,
-												'status' => $status);
-					$this->db->insert('allotment', $data7);
-					$this->db->insert_id();
-
-					$datalog = array('user_id' => $user_id, 'ket' => "Insert Allotment"." ".$cek->nama_produk." ".$dari." - "."$dari", 'supplier_id' => $supplier_id, 'waktu' => $date);
-					$this->db->insert('log', $datalog);
-					$this->db->insert_id();
-
-					$data9 = array('dari' => $d1, 'sampai' => $s);
-					$this->db->where('id_allotment', $id_allot);
-					$this->db->update('allotment', $data9);
-
-					$datalog1 = array('user_id' => $user_id, 'ket' => "Update Allotment"." ".$cek->nama_produk." ".$d1." - "."$s", 'supplier_id' => $supplier_id, 'waktu' => $date);
-					$this->db->insert('log', $datalog1);
-					$this->db->insert_id();
-				} else {
 					if ($dari == $s) {
+						$data9 = array('jumlah' => $jumlah, 'harga' => $harga);
+						$this->db->where('id_allotment', $id_allot);
+						$this->db->update('allotment', $data9);
 
-						$this->db->where('id_produk', $produk_id);
-						$cek = $this->db->get('produk')->row();
-
-						$data1 = array('jumlah' => $jumlah, 'dari' => $dari, 'sampai' => $dari,
+						$datalog1 = array('user_id' => $user_id, 'ket' => "Update Allotment"." ".$cek->nama_produk." ".$dari." - "."$dari", 'supplier_id' => $supplier_id, 'waktu' => $date);
+						$this->db->insert('log', $datalog1);
+						$this->db->insert_id();
+					} else {
+						$data7 = array('jumlah' => $jumlah, 'dari' => $dari, 'sampai' => $dari,
 													'produk_id' => $produk_id, 'harga' => $harga, 'supplier_id' => $supplier_id,
 													'status' => $status);
-						$this->db->insert('allotment', $data1);
+						$this->db->insert('allotment', $data7);
 						$this->db->insert_id();
 
 						$datalog = array('user_id' => $user_id, 'ket' => "Insert Allotment"." ".$cek->nama_produk." ".$dari." - "."$dari", 'supplier_id' => $supplier_id, 'waktu' => $date);
 						$this->db->insert('log', $datalog);
 						$this->db->insert_id();
 
-						$data2 = array('dari' => $d, 'sampai' => $d2);
+						$data9 = array('dari' => $d1, 'sampai' => $s);
 						$this->db->where('id_allotment', $id_allot);
-						$this->db->update('allotment', $data2);
+						$this->db->update('allotment', $data9);
 
-						$datalog1 = array('user_id' => $user_id, 'ket' => "Update Allotment"." ".$cek->nama_produk." ".$d." - "."$d2", 'supplier_id' => $supplier_id, 'waktu' => $date);
+						$datalog1 = array('user_id' => $user_id, 'ket' => "Update Allotment"." ".$cek->nama_produk." ".$d1." - "."$s", 'supplier_id' => $supplier_id, 'waktu' => $date);
 						$this->db->insert('log', $datalog1);
 						$this->db->insert_id();
+					}
+				} else {
+					if ($dari == $s) {
+						$this->db->where('id_produk', $produk_id);
+						$cek = $this->db->get('produk')->row();
+						if ($dari = $d) {
+							$data2 = array('jumlah' => $jumlah, 'harga' => $harga);
+							$this->db->where('id_allotment', $id_allot);
+							$this->db->update('allotment', $data2);
+
+							$datalog1 = array('user_id' => $user_id, 'ket' => "Update Allotment"." ".$cek->nama_produk." ".$dari." - "."$dari", 'supplier_id' => $supplier_id, 'waktu' => $date);
+							$this->db->insert('log', $datalog1);
+							$this->db->insert_id();
+						} else {
+							$data1 = array('jumlah' => $jumlah, 'dari' => $dari, 'sampai' => $dari,
+														'produk_id' => $produk_id, 'harga' => $harga, 'supplier_id' => $supplier_id,
+														'status' => $status);
+							$this->db->insert('allotment', $data1);
+							$this->db->insert_id();
+
+							$datalog = array('user_id' => $user_id, 'ket' => "Insert Allotment"." ".$cek->nama_produk." ".$dari." - "."$dari", 'supplier_id' => $supplier_id, 'waktu' => $date);
+							$this->db->insert('log', $datalog);
+							$this->db->insert_id();
+
+							$data2 = array('dari' => $d, 'sampai' => $d2);
+							$this->db->where('id_allotment', $id_allot);
+							$this->db->update('allotment', $data2);
+
+							$datalog1 = array('user_id' => $user_id, 'ket' => "Update Allotment"." ".$cek->nama_produk." ".$d." - "."$d2", 'supplier_id' => $supplier_id, 'waktu' => $date);
+							$this->db->insert('log', $datalog1);
+							$this->db->insert_id();
+						}
 					} else {
 						$this->db->where('id_produk', $produk_id);
 						$cek = $this->db->get('produk')->row();
@@ -383,24 +401,100 @@ class Allotment extends CI_model {
 		return $this->db->get()->row();
 	}
 	public function min() {
+		$supplier_id = $this->session->userdata('supplier_id');
+		$this->db->where('supplier_id', $supplier_id);
 		$this->db->select_min('created');
 		return $this->db->get('produk')->row();
 	}
 	public function max() {
+		$supplier_id = $this->session->userdata('supplier_id');
+		$this->db->where('supplier_id', $supplier_id);
 		$this->db->select_max('sampai');
 		return $this->db->get('allotment')->row();
 	}
 	public function search() {
-		$dari = $this->session->userdata('dari');
-		$sampai = $this->session->userdata('sampai');
-		$harga = $this->session->userdata('harga');
+		$d = $this->session->userdata('dari');
+		$s = $this->session->userdata('sampai');
+		if ($d == NULL) {
+			$dari = date("Y-m-d");
+		}else {
+			$dari = $this->session->userdata('dari');
+		}
+		if ($s == NULL) {
+			$sampai = date("Y-m-d");
+		} else {
+			$sampai = $this->session->userdata('sampai');
+		}
+		$harga = $this->input->post('harga');
 		$priceRangeArr = explode(',', $harga);
 		$status = 1;
-		$this->db->where('dari <=', $dari);
-		$this->db->where('sampai >=', $dari);
-		$this->db->where('harga >=', $priceRangeArr[0]);
-		$this->db->where('harga <=', $priceRangeArr[1]);
-		$this->db->where('status', $status);
-		return $this->db->get('allotment')->result();
-	}
+		if ($harga != NULL) {
+			$this->db->where('harga >=', $priceRangeArr[0]);
+			$this->db->where('harga <=', $priceRangeArr[1]);
+		}
+			$this->db->where('dari <=', $dari);
+			$this->db->where('sampai >=', $dari);
+			$this->db->where('status', $status);
+			$this->db->order_by("harga", "desc");
+			return $this->db->get('allotment')->result();
+		}
+		public function check($id) {
+			$this->db->where('produk_id', $id);
+			return $this->db->get('allotment')->result();
+		}
+		public function hitmanual() {
+			$pajak = $this->db->get('fee')->row();
+			date_default_timezone_set('Asia/Jakarta');
+			$d = $this->input->post('dari');
+			if ($d == NULL) {
+				$dari = date('Y-m-d');
+			} else {
+				$dari = $d;
+			}
+			$s = $this->input->post('sampai');
+			if ($s == NULL) {
+				$sampai = $dari;
+			} else {
+				$sampai = $s;
+			}
+			$k = $this->input->post('kamar');
+			if ($k == NULL) {
+				$kamar = 1;
+			} else {
+				$kamar = $k;
+			}
+			$produk_id = $this->input->post('produk_id');
+
+			$this->db->where('produk_id', $produk_id);
+			$allotment = $this->db->get('allotment')->result();
+
+			$this->db->where('id_produk', $produk_id);
+			$room = $this->db->get('produk')->row();
+
+			$date1 = date('Y-m-d', strtotime($dari));
+			$end_date1 = date('Y-m-d', strtotime($sampai));
+			while (strtotime($date1) <= strtotime($end_date1)) {
+			$d2[] = $date1;
+			$date1 = date ("Y-m-d", strtotime("+1 day", strtotime($date1)));
+			}
+			$hh = array();
+			$n = 1;
+			foreach ($d2 as $key => $value) {
+			        if ($allotment != NULL) {
+			          foreach ($allotment as $key) {
+			            if ($key->dari <=$value && $key->sampai >=$value) {
+			              $h = $key->harga * $kamar;
+			              break;
+			            } else {
+			              $h = $room->harga_produk * $kamar;
+			            }
+			          } $hh[] = $h;
+			        } else {
+			          $hh[] = $room->harga_produk * $kamar;
+			        }
+			        $n++; }
+							$tambahan= $pajak->fee/100 * array_sum($hh);
+							$hasil = array_sum($hh)+$tambahan;
+							return $hasil;
+		}
 }

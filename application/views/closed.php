@@ -3,11 +3,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Closed
+      Tutup
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">closed</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> beranda</a></li>
+      <li class="active">tutup</li>
     </ol>
   </section>
 
@@ -25,9 +25,9 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Room Name</th>
-                  <th>From</th>
-                  <th>To</th>
+                  <th>Kamar</th>
+                  <th>Dari</th>
+                  <th>Sampai</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -48,9 +48,9 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Room Name</th>
-                <th>From</th>
-                <th>To</th>
+                <th>Kamar</th>
+                <th>Dari</th>
+                <th>Sampai</th>
                 <th>Action</th>
               </tr>
               </tfoot>
@@ -83,8 +83,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
       </div>
       </form>
       </div><!-- /.modal-content -->
@@ -102,7 +102,7 @@
     {
       save_method1 = 'add';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("modalclo/",function(data){
 		      $("#modalbody").html(data);
           $('#datepicker').datepicker({
@@ -117,13 +117,14 @@
             	todayHighlight: true
           })
 	    });
+      $('form').submit(false);
     }
 
     function editdata(id)
     {
       save_method1 = 'update';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("cloedit/"+id,function(data){
 		      $("#modalbody").html(data);
           $('#datepicker').datepicker({
@@ -138,38 +139,45 @@
             	todayHighlight: true
           })
 	    });
+      $('form').submit(false);
     }
 
     function save1()
     {
-      var url;
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('cloadd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('cloupdate')?>";
-      }
+      if ($('#datepicker').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#datepicker1').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('cloadd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('cloupdate')?>";
+        }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
 
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload()// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Date already exists');
-				elert(errorThrown);
-            }
-        });
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                location.reload()// for reload a page
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Date already exists');
+  				elert(errorThrown);
+              }
+          });
+      }
     }
 
     function deletedata(id)

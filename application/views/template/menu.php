@@ -31,16 +31,17 @@
 
                 <p>
                   <?php echo $this->session->userdata('username'); ?>
-                  <small></small>
+                  <small><a href="#" onclick="modalprof()" class="btn btn-primary btn-flat">Ubah Profil</a></small>
                 </p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="profile" class="btn btn-default btn-flat">Profile</a>
+
+                  <a href="#" onclick="pass()" class="btn btn-default btn-flat">Ubah Sandi</a>
                 </div>
                 <div class="pull-right">
-                  <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url();?>logout" class="btn btn-default btn-flat">Logout</a>
                 </div>
               </li>
             </ul>
@@ -65,35 +66,11 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">Menu utama</li>
         <li>
           <a href="<?php echo base_url('home');?>">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Beranda</span>
           </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Customers</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('supplier');?>"><i class="fa fa-circle-o"></i> Supplier</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>User</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('user');?>"><i class="fa fa-circle-o"></i> User</a></li>
-            <li><a href="<?php echo base_url('access');?>"><i class="fa fa-circle-o"></i> Access</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="#">
@@ -103,16 +80,32 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('hotel');?>"><i class="fa fa-circle-o"></i> Hotel</a></li>
-            <li><a href="<?php echo base_url('room');?>"><i class="fa fa-circle-o"></i> Room</a></li>
-            <li><a href="<?php echo base_url('allotment');?>"><i class="fa fa-circle-o"></i> Allotment</a></li>
-            <li><a href="<?php echo base_url('closed');?>"><i class="fa fa-circle-o"></i> Closed</a></li>
-            <li><a href="<?php echo base_url('gallery');?>"><i class="fa fa-circle-o"></i> Gallery</a></li>
-            <li><a href="<?php echo base_url('calendar');?>"><i class="fa fa-circle-o"></i> Calendar</a></li>
-            <li><a href="<?php echo base_url('feature');?>"><i class="fa fa-circle-o"></i> Feature</a></li>
-            <li><a href="<?php echo base_url('nearby');?>"><i class="fa fa-circle-o"></i> Nearby</a></li>
-            <li><a href="<?php echo base_url('bed');?>"><i class="fa fa-circle-o"></i> Bed</a></li>
-            <li><a href="<?php echo base_url('log');?>"><i class="fa fa-circle-o"></i> Log</a></li>
+            <?php $akses_id = $this->session->userdata('akses_id');
+            $level = $this->session->userdata('level');
+            $supplier_id = $this->session->userdata('supplier_id');
+            $res1 = explode(',',$akses_id);
+            if ($level == "supplier") {
+              if ($supplier_id <= 0) { ?>
+                <li><a href="<?php echo base_url();?>hotel"><i class="fa fa-circle-o"></i>Hotel</a></li>
+          <?php } else {
+            foreach ($akses as $key) {
+              foreach ($res1 as $keya => $value) {
+                if ($value == $key->id_akses) {?>
+                  <li><a href="<?php echo base_url().strtolower($key->akses);?>"><i class="fa fa-circle-o"></i><?php echo ucfirst($key->akses) ;?></a></li>
+              <?php }
+              }
+             }
+          }
+        } elseif ($level == "staff") {
+          foreach ($akses as $key) {
+            foreach ($res1 as $keya => $value) {
+              if ($value == $key->id_akses) {?>
+                <li><a href="<?php echo base_url().strtolower($key->akses);?>"><i class="fa fa-circle-o"></i><?php echo ucfirst($key->akses) ;?></a></li>
+            <?php }
+            }
+           }
+        } ?>
+
           </ul>
         </li>
     </section>

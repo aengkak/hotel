@@ -2828,7 +2828,6 @@ $.fn.extend( {
 					if ( $.isFunction( done ) ) {
 						done();
 					}
-
 				} );
 	}
 } );
@@ -7168,7 +7167,6 @@ var widgetsButton = $.ui.button;
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
-
  * Released under the MIT license.
  * http://jquery.org/license
  */
@@ -11590,7 +11588,6 @@ $.ui.plugin.add( "resizable", "containment", {
 			o = that.options,
 			el = that.element,
 			oc = o.containment,
-
 			ce = ( oc instanceof $ ) ?
 				oc.get( 0 ) :
 				( /parent/.test( oc ) ) ? el.parent().get( 0 ) : oc;

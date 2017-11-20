@@ -20,7 +20,7 @@ class Customer extends CI_model {
                 Please click on the below activation link to verify your email address.<br /><br />
                 ' .$url. '' . $email2 . '<br /><br /><br />
                 Thanks Ya<br />
-                Yaha';
+                Karunia Travel';
 
     $config['protocol'] = 'smtp';
     $config['smtp_host'] = 'ssl://smtp.gmail.com'; // sesuaikan dengan host email
@@ -35,7 +35,7 @@ class Customer extends CI_model {
     $config['crlf'] = "\r\n";
     $this->email->initialize($config);
 
-    $this->email->from($from_email, 'Yaha');
+    $this->email->from($from_email, 'Karunia Travel');
     $this->email->to($email);
     $this->email->subject($subject);
     $this->email->message($message);
@@ -88,4 +88,9 @@ class Customer extends CI_model {
 		$this->db->where('status', $id);
 		return $this->db->get('person')->num_rows();
 	}
+    public function select() {
+        $id = $this->session->userdata('user_id');
+        $this->db->where('id_person', $id);
+        return $this->db->get('person')->row();
+    }
 }

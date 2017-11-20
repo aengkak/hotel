@@ -125,34 +125,49 @@
 
     function save1()
     {
-      var url;
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('staffadd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('staffupdate')?>";
+      if ($('#username').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#password').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#nama').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#alamat').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#no_telp').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#email').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('staffadd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('staffupdate')?>";
+        }
+
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
+
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                 location.reload();
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Error');
+  				elert(errorThrown);
+              }
+          });
       }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
-
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-               location.reload();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-				elert(errorThrown);
-            }
-        });
     }
 
     function deletedata(id)

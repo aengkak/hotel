@@ -1,0 +1,381 @@
+[class^="ico-"], [class*=" ico-"] {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: text-top;
+    background-image: url("../images/ico_ph.png");
+    background-repeat: no-repeat;
+}
+
+.ico-wifi-public {background-position: 0 0;}
+.ico-wifi-allrooms {background-position: -20px 0;}
+.ico-ac {background-position: -40px 0;}
+.ico-referigerator {background-position: -60px 0;}
+.ico-freedrinks {background-position: -80px 0;}
+.ico-wastafel {background-position: -100px 0;}
+.ico-hairdryer {background-position: -120px 0;}
+.ico-dvdplayer {background-position: -140px 0;}
+.ico-coffeemachine {background-position: -160px 0;}
+.ico-bathequipment {background-position: -180px 0;}
+
+.ico-alarm {background-position: 0px -20px;}
+.ico-telephone {background-position: -20px -20px;}
+.ico-table {background-position: -40px -20px;}
+.ico-window {background-position: -60px -20px;}
+.ico-towel {background-position: -80px -20px;}
+.ico-glasses {background-position: -100px -20px;}
+.ico-35m {background-position: -120px -20px;}
+.ico-curtain {background-position: -140px -20px;}
+.ico-shower {background-position: -160px -20px;}
+.ico-balcony {background-position: -180px -20px;}
+
+.ico-doublebed {background-position: 0px -40px;}
+.ico-singlebed {background-position: -20px -40px;}
+.ico-nosmoke {background-position: -40px -40px;}
+.ico-lcd {background-position: -60px -40px;}
+.ico-bathtub {background-position: -80px -40px;}
+.ico-library {background-position: -100px -40px;}
+.ico-slippers {background-position: -120px -40px;}
+.ico-hotbathtub {background-position: -140px -40px;}
+.ico-rack {background-position: -160px -40px;}
+.ico-heater {background-position: -180px -40px;}
+
+.ico-cabinets {background-position: 0px -60px;}
+.ico-teafree {background-position: -20px -60px;}
+.ico-coffeefree {background-position: -40px -60px;}
+.ico-mute {background-position: -60px -60px;}
+.ico-smokedetector {background-position: -80px -60px;}
+.ico-umbrella {background-position: -100px -60px;}
+.ico-sofa {background-position: -120px -60px;}
+.ico-weigher {background-position: -140px -60px;}
+.ico-freedrinkswelcome {background-position: -160px -60px;}
+.ico-sewing {background-position: -180px -60px;}
+
+.ico-iron {background-position: 0px -80px;}
+.ico-laptop {background-position: -20px -80px;}
+.ico-safebox {background-position: -40px -80px;}
+.ico-garden {background-position: -60px -80px;}
+.ico-beachview {background-position: -80px -80px;}
+.ico-jacuzzi {background-position: -100px -80px;}
+.ico-swimmingpool {background-position: -120px -80px;}
+.ico-steambath {background-position: -140px -80px;}
+.ico-24hoursservices {background-position: -160px -80px;}
+.ico-depositcounter {background-position: -180px -80px;}
+
+.ico-fireplace {background-position: 0px -100px;}
+.ico-cafe {background-position: -20px -100px;}
+.ico-newspaper {background-position: -40px -100px;}
+.ico-laundry {background-position: -60px -100px;}
+.ico-drycleaning {background-position: -80px -100px;}
+.ico-bar {background-position: -100px -100px;}
+.ico-baratswim {background-position: -120px -100px;}
+.ico-massages {background-position: -140px -100px;}
+.ico-business {background-position: -160px -100px;}
+.ico-nosmokearea {background-position: -180px -100px;}
+
+.ico-smokingarea {background-position: 0px -120px;}
+.ico-nighclub {background-position: -20px -120px;}
+.ico-spa {background-position: -40px -120px;}
+.ico-cleaningservice {background-position: -60px -120px;}
+.ico-giftshop {background-position: -80px -120px;}
+.ico-shop {background-position: -100px -120px;}
+.ico-salon {background-position: -120px -120px;}
+.ico-changemoney {background-position: -140px -120px;}
+.ico-mosque {background-position: -160px -120px;}
+.ico-chappel {background-position: -180px -120px;}
+
+.ico-karaoke {background-position: 0px -140px;}
+.ico-privatebeach {background-position: -20px -140px;}
+.ico-bbq {background-position: -40px -140px;}
+.ico-restaurant {background-position: -60px -140px;}
+.ico-kitchen {background-position: -80px -140px;}
+.ico-sauna {background-position: -100px -140px;}
+.ico-temple {background-position: -120px -140px;}
+.ico-kidsgarden {background-position: -140px -140px;}
+.ico-familyroom {background-position: -160px -140px;}
+.ico-kidsclub {background-position: -180px -140px;}
+
+.ico-custody {background-position: 0px -160px;}
+.ico-kidsswimmingpool {background-position: -20px -160px;}
+.ico-bilyard {background-position: -40px -160px;}
+.ico-golf {background-position: -60px -160px;}
+.ico-surfing {background-position: -80px -160px;}
+.ico-tennis {background-position: -100px -160px;}
+.ico-yoga {background-position: -120px -160px;}
+.ico-tabletennis {background-position: -140px -160px;}
+.ico-fishing {background-position: -160px -160px;}
+.ico-dart {background-position: -180px -160px;}
+
+.ico-bikerent {background-position: 0px -180px;}
+.ico-taxi {background-position: -20px -180px;}
+.ico-airporttrans {background-position: -40px -180px;}
+.ico-carrent {background-position: -60px -180px;}
+.ico-motorrent {background-position: -80px -180px;}
+.ico-freepark {background-position: -100px -180px;}
+.ico-locationpark {background-position: -120px -180px;}
+.ico-valet {background-position: -140px -180px;}
+.ico-electricitycar {background-position: -160px -180px;}
+.ico-transportation {background-position: -180px -180px;}
+
+
+.ico-petallow {background-position: 0px -200px;}
+.ico-disability {background-position: -20px -200px;}
+.ico-elevator {background-position: -40px -200px;}
+.ico-receptionist24 {background-position: -60px -200px;}
+.ico-security24 {background-position: -80px -200px;}
+
+[class^="gico-"], [class*=" gico-"] {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: text-top;
+    background-image: url("../images/ico_ph_green.png");
+    background-repeat: no-repeat;
+}
+
+.gico-wifi-public {background-position: 0 0;}
+.gico-wifi-allrooms {background-position: -50px 0;}
+.gico-ac {background-position: -100px 0;}
+.gico-referigerator {background-position: -150px 0;}
+.gico-freedrinks {background-position: -200px 0;}
+.gico-wastafel {background-position: -250px 0;}
+.gico-hairdryer {background-position: -300px 0;}
+.gico-dvdplayer {background-position: -350px 0;}
+.gico-coffeemachine {background-position: -400px 0;}
+.gico-bathequipment {background-position: -450px 0;}
+
+.gico-alarm {background-position: 0px -50px;}
+.gico-telephone {background-position: -50px -50px;}
+.gico-table {background-position: -100px -50px;}
+.gico-window {background-position: -150px -50px;}
+.gico-towel {background-position: -200px -50px;}
+.gico-glasses {background-position: -250px -50px;}
+.gico-35m {background-position: -300px -50px;}
+.gico-curtain {background-position: -350px -50px;}
+.gico-shower {background-position: -400px -50px;}
+.gico-balcony {background-position: -450px -50px;}
+
+.gico-doublebed {background-position: 0px -100px;}
+.gico-singlebed {background-position: -50px -100px;}
+.gico-nosmoke {background-position: -100px -100px;}
+.gico-lcd {background-position: -150px -100px;}
+.gico-bathtub {background-position: -200px -100px;}
+.gico-library {background-position: -250px -100px;}
+.gico-slippers {background-position: -300px -100px;}
+.gico-hotbathtub {background-position: -350px -100px;}
+.gico-rack {background-position: -400px -100px;}
+.gico-heater {background-position: -450px -100px;}
+
+.gico-cabinets {background-position: 0px -150px;}
+.gico-teafree {background-position: -50px -150px;}
+.gico-coffeefree {background-position: -100px -150px;}
+.gico-mute {background-position: -150px -150px;}
+.gico-smokedetector {background-position: -200px -150px;}
+.gico-umbrella {background-position: -250px -150px;}
+.gico-sofa {background-position: -300px -150px;}
+.gico-weigher {background-position: -350px -150px;}
+.gico-freedrinkswelcome {background-position: -400px -150px;}
+.gico-sewing {background-position: -450px -150px;}
+
+.gico-iron {background-position: 0px -200px;}
+.gico-laptop {background-position: -50px -200px;}
+.gico-safebox {background-position: -100px -200px;}
+.gico-garden {background-position: -150px -200px;}
+.gico-beachview {background-position: -200px -200px;}
+.gico-jacuzzi {background-position: -250px -200px;}
+.gico-swimmingpool {background-position: -300px -200px;}
+.gico-steambath {background-position: -350px -200px;}
+.gico-24hoursservices {background-position: -400px -200px;}
+.gico-depositcounter {background-position: -450px -200px;}
+
+.gico-fireplace {background-position: 0px -250px;}
+.gico-cafe {background-position: -50px -250px;}
+.gico-newspaper {background-position: -100px -250px;}
+.gico-laundry {background-position: -150px -250px;}
+.gico-drycleaning {background-position: -200px -250px;}
+.gico-bar {background-position: -250px -250px;}
+.gico-baratswim {background-position: -300px -250px;}
+.gico-massages {background-position: -350px -250px;}
+.gico-business {background-position: -400px -250px;}
+.gico-nosmokearea {background-position: -450px -250px;}
+
+.gico-smokingarea {background-position: 0px -300px;}
+.gico-nightclub {background-position: -50px -300px;}
+.gico-spa {background-position: -100px -300px;}
+.gico-cleaningservice {background-position: -150px -300px;}
+.gico-giftshop {background-position: -200px -300px;}
+.gico-shop {background-position: -250px -300px;}
+.gico-salon {background-position: -300px -300px;}
+.gico-changemoney {background-position: -350px -300px;}
+.gico-mosque {background-position: -400px -300px;}
+.gico-chappel {background-position: -450px -300px;}
+
+.gico-karaoke {background-position: 0px -350px;}
+.gico-privatebeach {background-position: -50px -350px;}
+.gico-bbq {background-position: -100px -350px;}
+.gico-restaurant {background-position: -150px -350px;}
+.gico-kitchen {background-position: -200px -350px;}
+.gico-sauna {background-position: -250px -350px;}
+.gico-temple {background-position: -300px -350px;}
+.gico-kidsgarden {background-position: -350px -350px;}
+.gico-familyroom {background-position: -400px -350px;}
+.gico-kidsclub {background-position: -450px -350px;}
+
+.gico-custody {background-position: 0px -400px;}
+.gico-kidsswimmingpool {background-position: -50px -400px;}
+.gico-billyard {background-position: -100px -400px;}
+.gico-golf {background-position: -150px -400px;}
+.gico-surfing {background-position: -200px -400px;}
+.gico-tennis {background-position: -250px -400px;}
+.gico-yoga {background-position: -300px -400px;}
+.gico-tabletennis {background-position: -350px -400px;}
+.gico-fishing {background-position: -400px -400px;}
+.gico-dart {background-position: -450px -400px;}
+
+.gico-bikerent {background-position: 0px -450px;}
+.gico-taxi {background-position: -50px -450px;}
+.gico-airporttrans {background-position: -100px -450px;}
+.gico-carrent {background-position: -150px -450px;}
+.gico-motorrent {background-position: -200px -450px;}
+.gico-freepark {background-position: -250px -450px;}
+.gico-locationpark {background-position: -300px -450px;}
+.gico-valet {background-position: -350px -450px;}
+.gico-electricitycar {background-position: -400px -450px;}
+.gico-transportation {background-position: -450px -450px;}
+
+
+.gico-petallow {background-position: 0px -500px;}
+.gico-disability {background-position: -50px -500px;}
+.gico-elevator {background-position: -100px -500px;}
+.gico-receptionist24 {background-position: -150px -500px;}
+.gico-security24 {background-position: -200px -500px;}
+[class^="gsico-"], [class*=" gsico-"] {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: text-top;
+    background-image: url("../images/ico_phgreens.png");
+    background-repeat: no-repeat;
+}
+
+
+
+.gsico-wifi-public {background-position: 0 0;}
+.gsico-wifi-allrooms {background-position: -20px 0;}
+.gsico-ac {background-position: -40px 0;}
+.gsico-referigerator {background-position: -60px 0;}
+.gsico-freedrinks {background-position: -80px 0;}
+.gsico-wastafel {background-position: -100px 0;}
+.gsico-hairdryer {background-position: -120px 0;}
+.gsico-dvdplayer {background-position: -140px 0;}
+.gsico-coffeemachine {background-position: -160px 0;}
+.gsico-bathequipment {background-position: -180px 0;}
+
+.gsico-alarm {background-position: 0px -20px;}
+.gsico-telephone {background-position: -20px -20px;}
+.gsico-table {background-position: -40px -20px;}
+.gsico-window {background-position: -60px -20px;}
+.gsico-towel {background-position: -80px -20px;}
+.gsico-glasses {background-position: -100px -20px;}
+.gsico-35m {background-position: -120px -20px;}
+.gsico-curtain {background-position: -140px -20px;}
+.gsico-shower {background-position: -160px -20px;}
+.gsico-balcony {background-position: -180px -20px;}
+
+.gsico-doublebed {background-position: 0px -40px;}
+.gsico-singlebed {background-position: -20px -40px;}
+.gsico-nosmoke {background-position: -40px -40px;}
+.gsico-lcd {background-position: -60px -40px;}
+.gsico-bathtub {background-position: -80px -40px;}
+.gsico-library {background-position: -100px -40px;}
+.gsico-slippers {background-position: -120px -40px;}
+.gsico-hotbathtub {background-position: -140px -40px;}
+.gsico-rack {background-position: -160px -40px;}
+.gsico-heater {background-position: -180px -40px;}
+
+.gsico-cabinets {background-position: 0px -60px;}
+.gsico-teafree {background-position: -20px -60px;}
+.gsico-coffeefree {background-position: -40px -60px;}
+.gsico-mute {background-position: -60px -60px;}
+.gsico-smokedetector {background-position: -80px -60px;}
+.gsico-umbrella {background-position: -100px -60px;}
+.gsico-sofa {background-position: -120px -60px;}
+.gsico-weigher {background-position: -140px -60px;}
+.gsico-freedrinkswelcome {background-position: -160px -60px;}
+.gsico-sewing {background-position: -180px -60px;}
+
+.gsico-iron {background-position: 0px -80px;}
+.gsico-laptop {background-position: -20px -80px;}
+.gsico-safebox {background-position: -40px -80px;}
+.gsico-garden {background-position: -60px -80px;}
+.gsico-beachview {background-position: -80px -80px;}
+.gsico-jacuzzi {background-position: -100px -80px;}
+.gsico-swimmingpool {background-position: -120px -80px;}
+.gsico-steambath {background-position: -140px -80px;}
+.gsico-24hoursservices {background-position: -160px -80px;}
+.gsico-depositcounter {background-position: -180px -80px;}
+
+.gsico-fireplace {background-position: 0px -100px;}
+.gsico-cafe {background-position: -20px -100px;}
+.gsico-newspaper {background-position: -40px -100px;}
+.gsico-laundry {background-position: -60px -100px;}
+.gsico-drycleaning {background-position: -80px -100px;}
+.gsico-bar {background-position: -100px -100px;}
+.gsico-baratswim {background-position: -120px -100px;}
+.gsico-massages {background-position: -140px -100px;}
+.gsico-business {background-position: -160px -100px;}
+.gsico-nosmokearea {background-position: -180px -100px;}
+
+.gsico-smokingarea {background-position: 0px -120px;}
+.gsico-nighclub {background-position: -20px -120px;}
+.gsico-spa {background-position: -40px -120px;}
+.gsico-cleaningservice {background-position: -60px -120px;}
+.gsico-giftshop {background-position: -80px -120px;}
+.gsico-shop {background-position: -100px -120px;}
+.gsico-salon {background-position: -120px -120px;}
+.gsico-changemoney {background-position: -140px -120px;}
+.gsico-mosque {background-position: -160px -120px;}
+.gsico-chappel {background-position: -180px -120px;}
+
+.gsico-karaoke {background-position: 0px -140px;}
+.gsico-privatebeach {background-position: -20px -140px;}
+.gsico-bbq {background-position: -40px -140px;}
+.gsico-restaurant {background-position: -60px -140px;}
+.gsico-kitchen {background-position: -80px -140px;}
+.gsico-sauna {background-position: -100px -140px;}
+.gsico-temple {background-position: -120px -140px;}
+.gsico-kidsgarden {background-position: -140px -140px;}
+.gsico-familyroom {background-position: -160px -140px;}
+.gsico-kidsclub {background-position: -180px -140px;}
+
+.gsico-custody {background-position: 0px -160px;}
+.gsico-kidsswimmingpool {background-position: -20px -160px;}
+.gsico-bilyard {background-position: -40px -160px;}
+.gsico-golf {background-position: -60px -160px;}
+.gsico-surfing {background-position: -80px -160px;}
+.gsico-tennis {background-position: -100px -160px;}
+.gsico-yoga {background-position: -120px -160px;}
+.gsico-tabletennis {background-position: -140px -160px;}
+.gsico-fishing {background-position: -160px -160px;}
+.gsico-dart {background-position: -180px -160px;}
+
+.gsico-bikerent {background-position: 0px -180px;}
+.gsico-taxi {background-position: -20px -180px;}
+.gsico-airporttrans {background-position: -40px -180px;}
+.gsico-carrent {background-position: -60px -180px;}
+.gsico-motorrent {background-position: -80px -180px;}
+.gsico-freepark {background-position: -100px -180px;}
+.gsico-locationpark {background-position: -120px -180px;}
+.gsico-valet {background-position: -140px -180px;}
+.gsico-electricitycar {background-position: -160px -180px;}
+.gsico-transportation {background-position: -180px -180px;}
+
+
+.gsico-petallow {background-position: 0px -200px;}
+.gsico-disability {background-position: -20px -200px;}
+.gsico-elevator {background-position: -40px -200px;}
+.gsico-receptionist24 {background-position: -60px -200px;}
+.gsico-security24 {background-position: -80px -200px;}

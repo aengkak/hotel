@@ -3,11 +3,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Allotment
+      Khusus
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">allotment</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li class="active">khusus</li>
     </ol>
   </section>
 
@@ -25,10 +25,10 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Room</th>
-                  <th>Price</th>
-                  <th>From</th>
-                  <th>To</th>
+                  <th>Kamar</th>
+                  <th>Harga</th>
+                  <th>Dari</th>
+                  <th>Sampai</th>
                   <th>Stock</th>
                   <th>Action</th>
                 </tr>
@@ -51,10 +51,10 @@
               <tfoot>
                 <tr>
                   <th>No</th>
-                  <th>Room</th>
-                  <th>Price</th>
-                  <th>From</th>
-                  <th>To</th>
+                  <th>Kamar</th>
+                  <th>Harga</th>
+                  <th>Dari</th>
+                  <th>Sampai</th>
                   <th>Stock</th>
                   <th>Action</th>
                 </tr>
@@ -87,8 +87,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
       </div>
 
       </div><!-- /.modal-content -->
@@ -105,7 +105,7 @@
     function addallot()
     {
       save_method1 = 'add';
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("modalallot/",function(data){
 		      $("#modalbody").html(data);
           $('#datepicker').datepicker({
@@ -121,14 +121,14 @@
           })
           $('#harga').mask("#,###.###", {reverse: true});
 	    });
-
+      $('form').submit(false);
     }
 
     function editallot(id)
     {
       save_method1 = 'update';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("allotedit/"+id,function(data){
 		      $("#modalbody").html(data);
           $('#datepicker').datepicker({
@@ -144,39 +144,51 @@
           })
           $('#harga').mask("#,###.###", {reverse: true});
 	    });
+      $('form').submit(false);
     }
 
     function save1()
     {
-      var url;
-      $("#harga").unmask();
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('allotadd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('allotupdate')?>";
+      if ($('#harga').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#datepicker').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#datepicker1').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#jumlah').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        $("#harga").unmask();
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('allotadd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('allotupdate')?>";
+        }
+
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
+
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                location.reload()// for reload a page
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Error, Please check data again');
+  				elert(errorThrown);
+              }
+          });
       }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
-
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload()// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error, Please check data again');
-				elert(errorThrown);
-            }
-        });
     }
 
     function deleteallot(id)

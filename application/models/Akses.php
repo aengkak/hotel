@@ -3,16 +3,19 @@ class Akses extends CI_model {
 	public function selectAll() {
 		$status = "1";
 		$this->db->where('status', $status);
+		$this->db->order_by('akses', "asc");
     return $this->db->get('akses')->result();
   }
 	public function staff() {
 		$this->db->where('tipe <=',"0.1");
 		$this->db->where('status', "1");
+		$this->db->order_by('akses', "asc");
     return $this->db->get('akses')->result();
 	}
 	public function hotel() {
 		$this->db->where('tipe >=',"0.1");
 		$this->db->where('status', "1");
+		$this->db->order_by('akses', "asc");
     return $this->db->get('akses')->result();
 	}
   public function add() {
@@ -24,7 +27,7 @@ class Akses extends CI_model {
 		$this->db->insert('akses', $data);
 		$this->db->insert_id();
 
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supplier_id = 0;
 		$user_id = $this->session->userdata('user_id');
 		if ($res == 0) {
 			$t = "Staff";
@@ -43,7 +46,7 @@ class Akses extends CI_model {
 		$this->db->where('id_akses', $id);
 		$this->db->update('akses', array('status' => "0"));
 
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supplier_id = 0;
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('id_akses', $id);
 		$cek = $this->db->get('akses')->row();
@@ -73,7 +76,7 @@ class Akses extends CI_model {
 		$this->db->where('id_akses', $id);
 		$this->db->update('akses', $data);
 
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supplier_id = 0;
 		$user_id = $this->session->userdata('user_id');
 		if ($res == 0) {
 			$t = "Staff";

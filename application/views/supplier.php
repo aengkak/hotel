@@ -1,3 +1,8 @@
+<style>
+    .pac-container {
+        z-index: 10000 !important;
+    }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -6,7 +11,7 @@
       Supplier
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> beranda</a></li>
       <li class="active">Supplier</li>
     </ol>
   </section>
@@ -17,7 +22,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title"></h3>
+            <h3 class="box-title"><button class="btn btn-primary fa fa-plus" onclick="addsupp()"></button></h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -25,8 +30,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Name</th>
-                  <th>Address</th>
+                  <th>Nama</th>
+                  <th>Alamat</th>
                   <th>Telephone</th>
                   <th>Email</th>
                   <th>Action</th>
@@ -40,17 +45,17 @@
                   <td><?php $limit = character_limiter($s->alamat,10);echo $limit;?></td>
                   <td><?php echo $s->no_telp;?></td>
                   <td><?php echo $s->email;?></td>
-                <!--  <td><button class="btn btn-warning fa fa-edit" onclick="editsupp(<?php echo $s->id_supplier;?>)"></button>
+                <td><button class="btn btn-warning fa fa-edit" onclick="editsupp(<?php echo $s->id_supplier;?>)"></button>
 							        <button class="btn btn-danger fa fa-close" onclick="deletesupp(<?php echo $s->id_supplier;?>)"> </button>
-                  </td> -->
+                  </td>
                 </tr>
               <?php $no++; endforeach; ?>
               </tbody>
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Name</th>
-                <th>Address</th>
+                <th>Nama</th>
+                <th>Alamat</th>
                 <th>Telephone</th>
                 <th>Email</th>
                 <th>Action</th>
@@ -84,8 +89,8 @@
       </form>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
       </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -102,9 +107,31 @@
     {
       save_method1 = 'add';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("modalsupp/",function(data){
 		      $("#modalbody").html(data);
+          $('#us3').locationpicker({
+              location: {
+                  latitude: -7.25468,
+                  longitude: 112.72093799999993
+              },
+              radius: 300,
+              inputBinding: {
+                  latitudeInput: $('#us3-lat'),
+                  longitudeInput: $('#us3-lon'),
+                  radiusInput: $('#us3-radius'),
+                  locationNameInput: $('#us3-address')
+              },
+              enableAutocomplete: true,
+              onchanged: function (currentLocation, radius, isMarkerDropped) {
+                  // Uncomment line below to show alert on each Location Changed event
+                  //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+              }
+          });
+          $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass   : 'iradio_minimal-blue'
+          })
 	    });
     }
 
@@ -112,9 +139,39 @@
     {
       save_method1 = 'update';
       $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show'); // show bootstrap modal
+      $('#modal_form').modal({backdrop: 'static', keyboard: false},'show'); // show bootstrap modal
       $("#modalbody").load("suppedit/"+id,function(data){
 		      $("#modalbody").html(data);
+          $('#us3').locationpicker({
+              location: {
+                latitude: $('#us3-lat').val(),
+                longitude: $('#us3-lon').val()
+              },
+              radius: 300,
+              inputBinding: {
+                  latitudeInput: $('#us3-lat'),
+                  longitudeInput: $('#us3-lon'),
+                  radiusInput: $('#us3-radius'),
+                  locationNameInput: $('#us3-address')
+              },
+              enableAutocomplete: true,
+              onchanged: function (currentLocation, radius, isMarkerDropped) {
+                  // Uncomment line below to show alert on each Location Changed event
+                  //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+              }
+          });
+          $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('onnearbyedit')?>",
+          data:$('#form').serialize(),
+          success: function(data){
+            $("#nearby").html(data);
+          }
+          });
+          $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass   : 'iradio_minimal-blue'
+          })
 	    });
     }
 
@@ -145,7 +202,6 @@
             error: function (jqXHR, textStatus, errorThrown)
             {
                 alert('Error adding / update data');
-				elert(errorThrown);
             }
         });
     }
@@ -172,5 +228,18 @@
 
       }
     }
+
+</script>
+<script>
+function getNear(val) {
+  $.ajax({
+  type: "POST",
+  url: "<?php echo site_url('onnearby')?>",
+  data:$('#form').serialize(),
+  success: function(data){
+    $("#nearby").html(data);
+  }
+  });
+}
 
 </script>

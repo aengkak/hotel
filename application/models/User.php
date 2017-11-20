@@ -1,9 +1,18 @@
 <?php
 class User extends CI_model {
 	public function selectAll() {
-		$status = "1";
-		$this->db->where('status', $status);
-		return $this->db->get('user_supplier')->result();
+		$level = $this->session->userdata('level');
+		if ($level == "staff") {
+			$status = "1";
+			$this->db->where('status', $status);
+			return $this->db->get('user_supplier')->result();
+		} elseif($level == "supplier") {
+			$supplier_id = $this->session->userdata('supplier_id');
+			$status = "1";
+			$this->db->where('status', $status);
+			$this->db->where('supplier_id', $supplier_id);
+			return $this->db->get('user_supplier')->result();
+		}
 	}
 	public function suppuser() {
 		$supplier_id = $this->session->userdata('supplier_id');
@@ -88,7 +97,12 @@ class User extends CI_model {
 		$no_telp = $this->input->post('no_telp');
 		$alamat = $this->input->post('alamat');
 		$res = implode(",",$akses_id);
-		$supplier_id = $this->session->userdata('supplier_id');
+		$supp = $this->session->userdata('supplier_id');
+		if ($supp != NULL) {
+			$supplier_id = $supp;
+		} else {
+			$supplier_id = 0;
+		}
 		$user_id = $this->session->userdata('user_id');
 		if ($password == NULL) {
 			$data = array('username' => $username,
@@ -103,6 +117,11 @@ class User extends CI_model {
 			$this->db->where('id_us', $id);
 			$this->db->update('user_supplier', $data);
 		}
+
+		if ($user_id == $id) {
+			$this->session->set_userdata('akses_id', $res);
+		}
+
 		date_default_timezone_set('Asia/Jakarta');
 		$date = date('Y-m-d H:i:s');
 		$datalog = array('user_id' => $user_id, 'ket' => "Update User"." ".$username, 'supplier_id' => $supplier_id, 'waktu' => $date);

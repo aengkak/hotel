@@ -11,6 +11,24 @@ class Tutup extends CI_model {
 		$this->db->order_by("produk_id", "desc");
     return $this->db->get()->result();
   }
+	public function check() {
+		$d = $this->session->userdata('dari');
+		$s = $this->session->userdata('sampai');
+		if ($d == NULL) {
+			$dari = date("Y-m-d");
+		}else {
+			$dari = $this->session->userdata('dari');
+		}
+    $status = "1";
+		$this->db->select('*');
+		$this->db->from('tutup');
+		$this->db->join('produk', 'tutup.produk_id = produk.id_produk');
+		$this->db->where('tutup.status', $status);
+		$this->db->where('tutup.dari <=', $dari);
+		$this->db->where('tutup.sampai >=', $dari);
+		$this->db->order_by("produk_id", "desc");
+    return $this->db->get()->result();
+  }
   public function add() {
     $supplier_id = $this->session->userdata('supplier_id');
 		$status = "1";

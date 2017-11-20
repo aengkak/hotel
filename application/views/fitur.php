@@ -3,11 +3,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Feature
+      Fasilitas
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">feature</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li class="active">fasilitas</li>
     </ol>
   </section>
 
@@ -25,8 +25,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Feature</th>
-                  <th>For</th>
+                  <th>Fasilitas</th>
+                  <th>Untuk</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -51,8 +51,8 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Feature</th>
-                <th>For</th>
+                <th>Fasilitas</th>
+                <th>Untuk</th>
                 <th>Action</th>
               </tr>
               </tfoot>
@@ -85,8 +85,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" id="btnSave" onclick="save1()" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
       </div>
       </form>
       </div><!-- /.modal-content -->
@@ -113,6 +113,7 @@
             radioClass   : 'iradio_minimal-blue'
           })
 	    });
+      $('form').submit(false);
     }
 
     function editdata(id)
@@ -128,38 +129,45 @@
             radioClass   : 'iradio_minimal-blue'
           })
 	    });
+      $('form').submit(false);
     }
 
     function save1()
     {
-      var url;
-      if(save_method1 == 'add')
-      {
-          url = "<?php echo base_url('fradd')?>";
-      }
-      else
-      {
-        url = "<?php echo site_url('frupdate')?>";
-      }
+      if ($('#nama').val() == '') {
+        alert('lengkapi data');
+      } else if ($('#icon').val() == '') {
+        alert('lengkapi data');
+      } else {
+        var url;
+        if(save_method1 == 'add')
+        {
+            url = "<?php echo base_url('fradd')?>";
+        }
+        else
+        {
+          url = "<?php echo site_url('frupdate')?>";
+        }
 
-       // ajax adding data to database
-          $.ajax({
-            url : url,
-            type: "POST",
-            data: $('#form').serialize(),
+         // ajax adding data to database
+            $.ajax({
+              url : url,
+              type: "POST",
+              data: $('#form').serialize(),
 
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload()// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-				elert(errorThrown);
-            }
-        });
+              success: function(data)
+              {
+                 //if success close modal and reload ajax table
+                 $('#modal_form').modal('hide');
+                location.reload()// for reload a page
+              },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                  alert('Error');
+  				elert(errorThrown);
+              }
+          });
+      }
     }
 
     function deletedata(id)
